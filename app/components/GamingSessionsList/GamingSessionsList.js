@@ -25,6 +25,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import GamesList from "../../components/GamingSessionsList/gameslist.json";
 import GamingSessions from "../../components/GamingSessionsList/gamesessions.json";
 
+// A minor change so Mike can see it on GitHub
+
 Moment.globalFormat = "h:mm";
 Moment.globalLocale = "en";
 
@@ -185,7 +187,6 @@ export default class GamingSessionsList extends React.PureComponent {
     console.log("FETCHING GAMES DATA", gamesAPIURL);
 
     fetch(gamesAPIURL)
-
       .then(response => response.json())
       .then(response => {
         this.setState({
