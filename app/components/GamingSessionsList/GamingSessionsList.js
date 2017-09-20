@@ -176,6 +176,8 @@ export default class GamingSessionsList extends React.PureComponent {
   };
 
   renderEmpty = () => {
+    if (this.state.data.length !== 0) return null;
+
     return (
       <View>
         <Text> No Results</Text>
@@ -205,11 +207,11 @@ export default class GamingSessionsList extends React.PureComponent {
 
         <FlatList
           data={this.state.data}
-          renderItem={({ item }) =>
-            <GamingSession data={item} navigation={this.props.navigation} />}
+          renderItem={({ item }) => (
+            <GamingSession data={item} navigation={this.props.navigation} />
+          )}
           ListHeaderComponent={this.renderEmpty}
           ListFooterComponent={this.renderFooter}
-          ListEmptyComponent={this.renderEmpty}
           extraData={this.state}
           // Getting errors using game id
           // keyExtractor={item => item.id}
