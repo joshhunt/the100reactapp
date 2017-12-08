@@ -47,13 +47,6 @@ class Login extends React.Component {
       console.error("AsyncStorage error: " + error.message);
     }
   }
-
-  componentWillMount() {
-    if (this.props.authentication.isAuthed === true) {
-      this.props.navigation.navigate("Main");
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.authenticationError
@@ -65,7 +58,9 @@ class Login extends React.Component {
 
   userLogin() {
     if (!this.state.username || !this.state.password) return;
+
     this.props.dispatch(fetchToken(this.state.username, this.state.password));
+
     this.setState({ password: "" });
   }
 
@@ -83,6 +78,9 @@ class Login extends React.Component {
   };
 
   render() {
+    if (this.props.authentication.isAuthed === true) {
+      this.props.navigation.navigate("Main");
+    }
     return (
       <KeyboardAwareScrollView
         contentContainerStyle={styles.container}
