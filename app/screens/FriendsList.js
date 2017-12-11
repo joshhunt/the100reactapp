@@ -181,11 +181,6 @@ class FriendsList extends Component {
       );
     }
     return (
-      <TouchableWithoutFeedback
-        onPress={() => {
-          Keyboard.dismiss();
-        }}
-      >
         <View style={styles.container}>
           <TopNav
             setSearchText={text => this.setSearchText(text)}
@@ -212,6 +207,7 @@ class FriendsList extends Component {
                 renderItem={({ item }) => (
                   <Friend user={item} navigation={this.props.navigation} />
                 )}
+                keyExtractor={item => item.id}
                 keyExtractor={(item, index) => index}
                 extraData={this.props}
                 ListFooterComponent={this.renderFooter}
@@ -241,7 +237,6 @@ class FriendsList extends Component {
             </View>
           </Tabs>
         </View>
-      </TouchableWithoutFeedback>
     );
   }
 }
