@@ -267,7 +267,9 @@ class GamingSessionsList extends React.PureComponent {
             <View style={styles.newButton}>
               <TouchableOpacity
                 onPress={() =>
-                  this.props.navigation.navigate("GamingSessionCreate")}
+                  this.props.navigation.navigate("GamingSessionCreate", {
+                    onGoBack: this.onGoBack()
+                  })}
               >
                 <MaterialIcons
                   name="add-box"
@@ -317,6 +319,7 @@ class GamingSessionsList extends React.PureComponent {
                   <GamingSessionsItem
                     data={item}
                     navigation={this.props.navigation}
+                    goBackFunc={this.onGoBack}
                   />
                 )}
                 ListHeaderComponent={this.renderEmpty}
@@ -339,6 +342,7 @@ class GamingSessionsList extends React.PureComponent {
                   <GamingSessionsItem
                     data={item}
                     navigation={this.props.navigation}
+                    goBackFunc={this.onGoBack}
                   />
                 )}
                 ListHeaderComponent={this.renderEmpty}
