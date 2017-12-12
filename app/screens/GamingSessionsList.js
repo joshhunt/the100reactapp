@@ -230,7 +230,9 @@ class GamingSessionsList extends React.PureComponent {
   };
   onGoBack = () => {
     setTimeout(() => {
-      this.props.dispatch(refreshGamingSessions(this.searchUrl()))
+      this.props.dispatch(refreshGamingSessions(this.searchUrl()));
+      this.props.dispatch(refreshMyGamingSessions());
+      this.props.dispatch(refreshGroupGamingSessions());
     }, 2000)
   }
   render() {
