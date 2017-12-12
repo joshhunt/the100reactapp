@@ -102,7 +102,7 @@ class GamingSession extends React.Component {
       )
         .then(response => response.json())
         .then(responseJson => {
-          this.fetchGamingSessionData();
+          this.props.navigation.goBack();
           console.log("GAME JOINED OR LEFT");
         })
         .catch(error => {
@@ -132,7 +132,7 @@ class GamingSession extends React.Component {
           </Text>
           <JoinLeaveButton
             hasJoined={this.state.hasJoined}
-            leaveGame={this.leaveGame.bind(this)}
+            leaveGame={this.leaveGame}
             joinGame={this.joinGame}
           />
         </View>

@@ -228,7 +228,11 @@ class GamingSessionsList extends React.PureComponent {
       );
     }
   };
-
+  onGoBack = () => {
+    setTimeout(() => {
+      this.props.dispatch(refreshGamingSessions(this.searchUrl()))
+    }, 2000)
+  }
   render() {
     if (this.props.gamingSessionsLoading) {
       return (
@@ -290,6 +294,7 @@ class GamingSessionsList extends React.PureComponent {
                   <GamingSessionsItem
                     data={item}
                     navigation={this.props.navigation}
+                    goBackFunc={this.onGoBack}
                   />
                 )}
                 ListHeaderComponent={this.renderEmpty}

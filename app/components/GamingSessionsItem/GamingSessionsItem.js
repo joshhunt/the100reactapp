@@ -29,7 +29,8 @@ export default function GamingSessionItem(props) {
     <TouchableHighlight
       onPress={() =>
         props.navigation.navigate("GamingSession", {
-          gamingSessionId: props.data.id
+          gamingSessionId: props.data.id,
+          onGoBack: props.goBackFunc()
           // headerRight: (
           //   <Button
           //     style={{

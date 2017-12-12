@@ -58,6 +58,7 @@ class GamingSessionCreate extends React.Component {
     ) {
       // this.props.navigation.navigate("GamingSessionsList");
       this.props.alertWithType("success", "Success", "Gaming Session Created!");
+      this.props.navigation.goBack();
     }
   }
 
