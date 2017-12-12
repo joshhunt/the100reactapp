@@ -36,7 +36,7 @@ class Login extends React.Component {
 
     this.state = {
       username: null,
-      password: null,
+      password: null
     };
   }
 
@@ -47,7 +47,6 @@ class Login extends React.Component {
       console.error("AsyncStorage error: " + error.message);
     }
   }
-
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.authenticationError
@@ -59,7 +58,9 @@ class Login extends React.Component {
 
   userLogin() {
     if (!this.state.username || !this.state.password) return;
+
     this.props.dispatch(fetchToken(this.state.username, this.state.password));
+
     this.setState({ password: "" });
   }
 
@@ -78,7 +79,7 @@ class Login extends React.Component {
 
   render() {
     if (this.props.authentication.isAuthed === true) {
-      this.props.navigation.navigate("Main")
+      this.props.navigation.navigate("Main");
     }
     return (
       <KeyboardAwareScrollView
@@ -87,7 +88,10 @@ class Login extends React.Component {
         keyboardOpeningTime={10}
       >
         <View style={styles.container}>
-          <Image style={styles.image} source={require("../assets/images/logo.png")} />
+          <Image
+            style={styles.image}
+            source={require("../assets/images/logo.png")}
+          />
 
           <TextInput
             onChangeText={username => this.setState({ username })}

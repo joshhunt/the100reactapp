@@ -1,5 +1,5 @@
 import React, { PureComponent, Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   ActivityIndicator,
   Alert,
@@ -58,11 +58,11 @@ class FriendsList extends Component {
   };
   constructor(props) {
     super(props);
-    this.fetchData = this.fetchData.bind(this);
+    this.fetchUsersData = this.fetchUsersData.bind(this);
   }
 
   componentWillMount() {
-    this.fetchData();
+    this.fetchUsersData();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -101,13 +101,12 @@ class FriendsList extends Component {
     return result;
   }
 
-  fetchData() {
+  fetchUsersData() {
     this.props.dispatch(fetchFriends());
     this.props.dispatch(fetchGroupMembers());
   }
 
   refreshFriends = () => {
-    // this.fetchData();
     this.props.dispatch(refreshFriends());
   };
 
@@ -182,11 +181,6 @@ class FriendsList extends Component {
       );
     }
     return (
-      <TouchableWithoutFeedback
-        onPress={() => {
-          Keyboard.dismiss();
-        }}
-      >
         <View style={styles.container}>
           <TopNav
             setSearchText={text => this.setSearchText(text)}
@@ -213,6 +207,7 @@ class FriendsList extends Component {
                 renderItem={({ item }) => (
                   <Friend user={item} navigation={this.props.navigation} />
                 )}
+                keyExtractor={item => item.id}
                 keyExtractor={(item, index) => index}
                 extraData={this.props}
                 ListFooterComponent={this.renderFooter}
@@ -242,7 +237,6 @@ class FriendsList extends Component {
             </View>
           </Tabs>
         </View>
-      </TouchableWithoutFeedback>
     );
   }
 }
