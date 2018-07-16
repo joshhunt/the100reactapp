@@ -24,6 +24,20 @@ import JoinLeaveButton from "../../screens/GamingSession";
 Moment.globalFormat = "h:mm";
 Moment.globalLocale = "en";
 
+function IconDetail({icon, children}) {
+  return (
+    <View style={styles.iconDetail}>
+      <MaterialCommunityIcons
+        name={icon}
+        size={12}
+        color={colors.mediumGrey}
+      />
+
+      <Text style={styles.iconText}>{children}</Text>
+    </View>
+  );
+}
+
 export default function GamingSessionItem(props) {
   return (
     <TouchableHighlight
@@ -56,39 +70,28 @@ export default function GamingSessionItem(props) {
           />
           <Text style={styles.groupNameText}>{props.data.clan_tag}</Text>
         </View>
+
         <View style={styles.middleBox}>
           <Text style={styles.gamingSessionTitle}>{props.data.category}</Text>
           <Text style={styles.gamingSessionDescription} numberOfLines={2}>
             {props.data.name}
           </Text>
         </View>
+
         <View style={styles.rightBox}>
-          <Text style={styles.iconText}>
-            <MaterialCommunityIcons
-              name="calendar"
-              size={12}
-              color={colors.mediumGrey}
-            />{" "}
+          <IconDetail icon="calendar">
             <Moment format="h:mma" element={Text}>
               {props.data.start_time}
             </Moment>
-          </Text>
-          <Text style={styles.iconText}>
-            <MaterialCommunityIcons
-              name="account"
-              size={14}
-              color={colors.mediumGrey}
-            />{" "}
+          </IconDetail>
+
+          <IconDetail icon="account">
             {props.data.primary_users_count}/{props.data.team_size}
-          </Text>
-          <Text style={styles.iconText}>
-            <MaterialCommunityIcons
-              name="gauge"
-              size={14}
-              color={colors.mediumGrey}
-            />{" "}
-            {props.data.light_level === null ? " any" : props.data.light_level}
-          </Text>
+          </IconDetail>
+
+          <IconDetail icon="gauge">
+            {props.data.light_level === null ? "any" : props.data.light_level}
+          </IconDetail>
         </View>
       </View>
     </TouchableHighlight>
@@ -99,14 +102,6 @@ const styles = StyleSheet.create({
   defaultText: {
     color: colors.white
   },
-  // container: {
-  //   marginTop: 20,
-  //   flex: 1,
-  //   flexDirection: "column",
-  //   justifyContent: "center",
-  //   alignItems: "stretch",
-  //   backgroundColor: colors.white
-  // },
   loading: {
     alignItems: "center",
     justifyContent: "center",
@@ -116,33 +111,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    // marginTop: 8,
     paddingBottom: 12,
     paddingTop: 10,
     paddingHorizontal: 5,
-    // padding: 5,
     borderBottomWidth: 0.5,
     borderBottomColor: "#d6d7da",
     backgroundColor: colors.white
   },
   leftBox: {
-    flex: 1,
     paddingTop: 2,
-    paddingRight: 2,
+    paddingRight: 10,
     alignItems: "center",
-    justifyContent: "center",
-    // margin: 2,
-    backgroundColor: colors.white
+    justifyContent: "flex-start",
+    backgroundColor: colors.white,
   },
   middleBox: {
-    flex: 6,
-    // padding: 2,
-    // margin: 2,
-    backgroundColor: colors.white
+    flex: 1,
+    marginRight: 16,
+    backgroundColor: colors.white,
+    marginTop: 2,
   },
   rightBox: {
-    flex: 1.6,
-    justifyContent: "space-around"
+    justifyContent: "flex-start",
+    marginTop: 2,
   },
   avatarMini: {
     height: 40,
@@ -150,20 +141,27 @@ const styles = StyleSheet.create({
     borderRadius: 20
   },
   gamingSessionTitle: {
-    fontSize: 15,
+    fontSize: 16,
     color: colors.grey,
-    fontFamily: fontStyles.gameHeaderFont
+    fontFamily: fontStyles.gameHeaderFont,
+    paddingBottom: 5,
   },
   gamingSessionDescription: {
     color: colors.lightGrey
-  },
-  iconText: {
-    fontSize: fontSizes.small,
-    color: colors.mediumGrey
   },
   groupNameText: {
     paddingTop: 2,
     fontSize: fontSizes.small,
     color: colors.lightestGrey
-  }
+  },
+  iconDetail: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 4,
+  },
+  iconText: {
+    fontSize: fontSizes.small,
+    color: colors.mediumGrey,
+    marginLeft: 4,
+  },
 });

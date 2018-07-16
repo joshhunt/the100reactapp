@@ -49,6 +49,14 @@ import { loadMoreGroupGamingSessions } from "../actions/gamingSessions";
 import { fetchUser } from "../actions/users";
 import { removeToken } from "../actions/authentication";
 
+function SectionHeader({ children }) {
+  return (
+    <View style={{ padding: 5, backgroundColor: '#FAFAFA' }}>
+      <Text style={{ fontWeight: '500', color: '#43454a' }}>{children}</Text>
+    </View>
+  );
+}
+
 class GamingSessionsList extends React.PureComponent {
   static propTypes = {
     activity: PropTypes.string,
@@ -355,14 +363,7 @@ class GamingSessionsList extends React.PureComponent {
                   />
                 )}
                 renderSectionHeader={({ section: { title } }) => (
-                  <View
-                    style={{
-                      padding: 5,
-                      backgroundColor: "white"
-                    }}
-                  >
-                    <Text style={{ fontWeight: "bold" }}>{title}</Text>
-                  </View>
+                  <SectionHeader>{title}</SectionHeader>
                 )}
                 sections={this.gamesArray(this.props.myGamingSessions)}
                 ListHeaderComponent={this.renderEmpty}
@@ -385,9 +386,7 @@ class GamingSessionsList extends React.PureComponent {
                   />
                 )}
                 renderSectionHeader={({ section: { title } }) => (
-                  <View style={{ padding: 5, backgroundColor: "white" }}>
-                    <Text style={{ fontWeight: "bold" }}>{title}</Text>
-                  </View>
+                  <SectionHeader>{title}</SectionHeader>
                 )}
                 sections={this.gamesArray(this.props.groupGamingSessions)}
                 ListHeaderComponent={this.renderEmpty}
@@ -410,9 +409,7 @@ class GamingSessionsList extends React.PureComponent {
                   />
                 )}
                 renderSectionHeader={({ section: { title } }) => (
-                  <View style={{ padding: 5, backgroundColor: "white" }}>
-                    <Text style={{ fontWeight: "bold" }}>{title}</Text>
-                  </View>
+                  <SectionHeader>{title}</SectionHeader>
                 )}
                 sections={this.gamesArray(this.props.data)}
                 ListHeaderComponent={this.renderEmpty}
